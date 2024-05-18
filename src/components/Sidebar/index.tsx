@@ -69,14 +69,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <Link href="/">
           <Image
-            width={176}
-            height={32}
-            src={"/images/logo/logo.svg"}
+            width={44}
+            height={44}
+            src={"/images/logo/kazibyte-round-ass.png"}
             alt="Logo"
             priority
-          />
+          /> 
         </Link>
-
+      <h4 className="text-xl font-semibold text-white">Kazi Byte</h4>
         <button
           ref={trigger}
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -610,6 +610,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               }`}
                             >
                               Buttons
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              href="/ui/faq/create"
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                                pathname === "/ui/buttons" && "text-white"
+                              }`}
+                            >
+                              FAQ
                             </Link>
                           </li>
                         </ul>
