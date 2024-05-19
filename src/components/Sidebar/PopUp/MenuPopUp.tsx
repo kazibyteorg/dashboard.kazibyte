@@ -357,7 +357,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Camera,DivideSquare, Square } from 'react-feather';
+import { Camera,DivideSquare, CornerDownRight, CornerLeftDown, Square, Navigation, Grid,CheckCircle, PlayCircle, CornerUpRight, AlertOctagon } from 'react-feather';
 
 
 
@@ -365,20 +365,22 @@ const NavbarMenuData = [
   {
     title: 'Services',
     href: '/services',
-    icon: <Camera />,
+    icon: <Grid />,
     sublinks: [
       {
         title: 'Full-Stack',
         href: '/services/full-stack',
-        icon: <Square />,
+        icon: <DivideSquare />,
         sublinks: [
           {
             title: 'Frontend',
             href: '/services/full-stack/frontend',
+            icon: <CornerDownRight />,
           },
           {
             title: 'Backend',
             href: '/services/full-stack/backend',
+            icon: <CornerDownRight />,
           },
         ],
       },
@@ -386,22 +388,27 @@ const NavbarMenuData = [
       {
         title: 'API Development',
         href: '/services/api-integration',
+        icon: <CornerUpRight />,
         sublinks: [
           {
             title: 'API Development',
             href: '/services/api-integration/api-development',
+            icon: <CornerLeftDown />,
           },
           {
             title: 'API Integration',
             href: '/services/api-integration/api-integration',
+            icon: <CornerLeftDown />,
           },
           {
             title: 'API Testing',
             href: '/services/api-integration/api-testing',
+            icon: <CornerLeftDown />,
           },
           {
             title: 'API Security',
             href: '/services/api-integration/api-security',
+            icon: <CornerLeftDown />,
           },
         ]
 
@@ -409,33 +416,39 @@ const NavbarMenuData = [
       {
         title: 'Website Design',
         href: '/services/website-design',
+        icon: <CornerDownRight />,
       },
       {
         title: 'Case Studies',
         href: '/services/case-studies',
+        icon: <CornerDownRight />,
       },
     ],
   },
   {
     title: 'Company',
     href: '/company',
-    icon: <DivideSquare />,
+    icon: <CheckCircle />,
     sublinks: [
       {
         title: 'About-us',
         href: '/company/about-us',
+        icon: <Camera />,
       },
       {
         title: 'Blog',
         href: '/company/blog',
+        icon: <PlayCircle />,
       },
       {
         title: 'Portfolio',
         href: '/company/portfolio',
+        icon: <CornerUpRight />,
         sublinks: [
           {
             title: 'Web Development',
             href: '/company/portfolio/web-development',
+            icon: <AlertOctagon />,
           },
           {
             title: 'Mobile Apps',
@@ -446,6 +459,7 @@ const NavbarMenuData = [
       {
         title: 'Why Choose Us',
         href: '/company/why-choose-us',
+        icon: <AlertOctagon />,
       },
     ],
   },
@@ -517,12 +531,15 @@ const Navbar = () => {
                         <div className="py-1">
                           {item.sublinks.map((sublink, subIndex) => (
                             <div key={subIndex} className="relative menu-item">
-                              <button
+                              <div
                                 onClick={() => handleSubMenuClick(index, subIndex)}
-                                className="text-black  dark:text-white font-serif block px-4 py-2 text-xl hover:bg-orange-100 dark:hover:bg-zinc-400 hover:underline"
+                                className="text-black flex justify-items-start gap-4  dark:text-white font-serif  px-4 py-2 text-xl hover:bg-orange-100 dark:hover:bg-zinc-400 hover:underline"
                               >
+                                <div>
+                                    {sublink.icon}
+                              </div>
                                 {sublink.title}
-                              </button>
+                              </div>
                               {sublink.sublinks && openSubMenuIndex[index] === subIndex && (
                                 <div className="absolute z-50 mt-2 w-64 bg-slate-200 dark:bg-slate-600 origin-top-left rounded-md">
                                   <div className="py-1">
@@ -530,8 +547,11 @@ const Navbar = () => {
                                       <Link
                                         key={nestedIndex}
                                         href={nestedSublink.href}
-                                        className="text-black dark:text-white font-serif block px-4 py-2 text-lg hover:bg-orange-100 dark:hover:bg-zinc-400 hover:underline"
+                                        className="text-black flex justify-items-start dark:text-white font-serif px-4 py-2 text-lg hover:bg-orange-100 dark:hover:bg-zinc-400 hover:underline"
                                       >
+                                           <div>
+                                    {sublink.icon}
+                              </div>
                                         {nestedSublink.title}
                                       </Link>
                                     ))}
